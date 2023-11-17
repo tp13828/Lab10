@@ -1,8 +1,3 @@
-/**
- * File: Person.java Class: CSCI 1302 Author: Stella Pham and Thi Tran Created
- * on: Nov 17, 2023 Last Modified: Nov 17, 2023 Description: Person class
- */
-
 public class Person implements Comparable<Person> {
 	private int age;
 	private String name;
@@ -33,21 +28,38 @@ public class Person implements Comparable<Person> {
 	public double getSalary() {
 		return salary;
 	}
-	
-	
+
+
+	public void setName(String name) {
+		this.name = name;
+
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
 
 	@Override
 	public int compareTo(Person o) {
-	if (this.getSalary() < o.getSalary()) {
-		return 1;
-	} else if (this.getSalary() > o.getSalary()) {
-		return -1;
-	} else {
-		return 0;
-	}
-	
-	}
-	
-	
+		if (this.getSalary() < o.getSalary()) {
+			return 1;
+		} else if (this.getSalary() > o.getSalary()) {
+			return -1;
+		} else {
+			return 0;
+		}
 
+	}
 }
