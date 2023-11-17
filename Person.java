@@ -6,6 +6,7 @@ public class Person implements Comparable<Person> {
 	private double salary;
 
 	public Person() {
+
 	}
 
 	// Accessors
@@ -51,6 +52,7 @@ public class Person implements Comparable<Person> {
 		this.salary = salary;
 	}
 
+
 	@Override
 	public int compareTo(Person o) {
 		if (this.getSalary() < o.getSalary()) {
@@ -60,6 +62,13 @@ public class Person implements Comparable<Person> {
 		} else {
 			return 0;
 		}
-
 	}
+@Override
+		public String toString(){
+			return String.format("Age: %d\nFirst and Last Name: %s\nAddress: %s\nZip Code: %d\nSalary: %,.02f\n\n", age,
+					name, address, zipCode, salary);
+
+		}
+
+	
 }
