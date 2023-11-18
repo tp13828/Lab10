@@ -32,12 +32,10 @@ public class Lab10Prob01 {
 				output.writeDouble(salary);
 
 				// Print to console
-				System.out.printf("Age: %d\nFirst and Last Name: %s\nAddress: %s\nZip Code: %d\nSalary: %.02f\n\n", age,
-						name, address, zipCode, salary);
+				System.out.printf("%s %d %s %d %.02f\n", name, age, address, zipCode, salary);
 
 			}
 		} catch (EOFException ex) {
-			System.out.println("Done processing");
 		}
 	}
 }
