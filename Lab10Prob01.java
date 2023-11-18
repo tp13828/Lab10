@@ -1,4 +1,3 @@
-
 /**
 * File: Lab 10 Prob01.java
 * Class: CSCI 1302
@@ -17,7 +16,6 @@ public class Lab10Prob01 {
 				DataOutputStream output = new DataOutputStream(
 						new BufferedOutputStream(new FileOutputStream("src/people-copy.dat")));) {
 
-			int r;
 			while (true) {
 				// Variables
 				int age = input.readInt();
