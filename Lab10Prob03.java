@@ -5,7 +5,6 @@ public class Lab10Prob03 {
     public static void main(String[] args) throws IOException {
         ArrayList<Person> peopleList = new ArrayList<>();
 
-        DataOutputStream output = null;
 
         try (DataInputStream input = new DataInputStream(
                 new BufferedInputStream(new FileInputStream("src/people.dat")))) {
@@ -32,8 +31,17 @@ public class Lab10Prob03 {
         // Sort the ArrayList by salary
         Collections.sort(peopleList);
 
+        
+        //Write object instances in Person array list to new file
+        try ( ObjectOutputStream objectOutput = new ObjectOutputStream(new BufferedOutputStream
+        		(new FileOutputStream("src/people-salary-sorted.dat")));
+        		) {
+        			for (Person person : peopleList) {
+        				objectOutput.writeObject(person);
+        			}
+        		}
         // Open the output stream outside the try-with-resources block
-        try {
+        /*try {
             output = new DataOutputStream(
                     new BufferedOutputStream(new FileOutputStream("src/people-salary-sorted.dat")));
 
@@ -55,24 +63,29 @@ public class Lab10Prob03 {
             if (output != null) {
                 output.close();
             }
-        }
+        }*/
 
         // To test the newly created file
-        try (DataInputStream inputFile = new DataInputStream(
+        try (ObjectInputStream inputFile = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream("src/people-salary-sorted.dat")))) {
 
             while (true) {
+            	Person readPerson = (Person)inputFile.readObject();
+            	/*
                 int age = inputFile.readInt();
                 String name = inputFile.readUTF();
                 String address = inputFile.readUTF();
                 int zipCode = inputFile.readInt();
                 double salary = inputFile.readDouble();
+                */
 
                 System.out.printf("Age: %d\nFirst and Last Name: %s\nAddress: %s\nZip Code: %d\nSalary: %.02f\n\n",
-                        age, name, address, zipCode, salary);
+                        readPerson.getAge(), readPerson.getName(), readPerson.getAddress(), readPerson.getZipCode(), readPerson.getSalary());
             }
         } catch (EOFException ex) {
             System.out.println("Done processing output file");
+        } catch (Exception ex2) {
+        	System.out.println("Error");
         }
     }
 }
