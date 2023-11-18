@@ -1,10 +1,19 @@
+/**
+* File: Lab 10 Prob03.java
+* Class: CSCI 1302
+* Author: Stella Pham and Thi Tran
+* Created on: Nov 17, 2023
+* Last Modified: Nov 18, 2023
+* Description: File that reads people.dat and processes into Person arrayList, then writes Person instances into
+*              new file using Person arrayList
+*/
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 public class Lab10Prob03 {
     public static void main(String[] args) throws IOException {
         ArrayList<Person> peopleList = new ArrayList<>();
-
 
         try (DataInputStream input = new DataInputStream(
                 new BufferedInputStream(new FileInputStream("src/people.dat")))) {
@@ -40,30 +49,6 @@ public class Lab10Prob03 {
         				objectOutput.writeObject(person);
         			}
         		}
-        // Open the output stream outside the try-with-resources block
-        /*try {
-            output = new DataOutputStream(
-                    new BufferedOutputStream(new FileOutputStream("src/people-salary-sorted.dat")));
-
-            // Write the sorted data to the output file
-            for (Person person : peopleList) {
-                output.writeInt(person.getAge());
-                output.writeUTF(person.getName());
-                output.writeUTF(person.getAddress());
-                output.writeInt(person.getZipCode());
-                output.writeDouble(person.getSalary());
-            }
-
-            System.out.println("Sorting and writing to file completed.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            // Close the output stream in the finally block to ensure it gets closed
-            if (output != null) {
-                output.close();
-            }
-        }*/
 
         // To test the newly created file
         try (ObjectInputStream inputFile = new ObjectInputStream(
@@ -71,16 +56,7 @@ public class Lab10Prob03 {
 
             while (true) {
             	Person readPerson = (Person)inputFile.readObject();
-            	/*
-                int age = inputFile.readInt();
-                String name = inputFile.readUTF();
-                String address = inputFile.readUTF();
-                int zipCode = inputFile.readInt();
-                double salary = inputFile.readDouble();
-                */
-
-                System.out.printf("Age: %d\nFirst and Last Name: %s\nAddress: %s\nZip Code: %d\nSalary: %.02f\n\n",
-                        readPerson.getAge(), readPerson.getName(), readPerson.getAddress(), readPerson.getZipCode(), readPerson.getSalary());
+                System.out.printf("%s", readPerson.toString());
             }
         } catch (EOFException ex) {
             System.out.println("Done processing output file");
